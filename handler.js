@@ -1,19 +1,20 @@
 const AWS = require("aws-sdk");
 const express = require("express");
 const serverless = require("serverless-http");
+const enviroment = require("./common/enviroment");
 
 const app = express();
 
-const TABELA_FUNCIONARIOS = process.env.TABELA_FUNCIONARIOS;
 const IS_OFFLINE = process.env.IS_OFFLINE;
 
 let dynamoDb;
-if (IS_OFFLINE === true) {
+
+if (IS_OFFLINE === true || ["test"].includes(process.env.NODE_ENV)) {
   dynamoDb = new AWS.DynamoDB.DocumentClient({
-    region: "localhost",
-    endpoint: "http://localhost:8000",
+    region: enviroment.localDb.region,
+    endpoint: enviroment.localDb.url,
+    sslEnabled: false,
   });
-  console.log(dynamoDb);
 } else {
   dynamoDb = new AWS.DynamoDB.DocumentClient();
 }
@@ -21,19 +22,19 @@ if (IS_OFFLINE === true) {
 app.use(express.json());
 
 app.get("/healthCheck", (req, res) => {
-  res.send({ versao: "1.0.0", mensagem: "Estou UP!" });
+  res.send({ versao: "1.0.0", mensagem: "Estou UP!", online: !IS_OFFLINE });
 });
 
 app.get("/funcionarios", async (req, res) => {
   const params = {
-    TableName: TABELA_FUNCIONARIOS,
+    TableName: enviroment.TABELA_FUNCIONARIOS,
   };
 
   try {
     const { Items } = await dynamoDb.scan(params).promise();
     res.send(Items);
   } catch (e) {
-    console.log();
+    console.log(e);
     res.status(500).send({ body: e.message });
   }
 });

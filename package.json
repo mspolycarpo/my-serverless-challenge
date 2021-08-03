@@ -11,6 +11,7 @@
     "test": "jest"
   },
   "devDependencies": {
+    "@shelf/jest-dynamodb": "^1.8.1",
     "jest": "^27.0.6",
     "serverless-dynamodb-local": "^0.2.40",
     "serverless-offline": "^8.0.0",
