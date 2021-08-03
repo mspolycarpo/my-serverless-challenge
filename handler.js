@@ -4,65 +4,44 @@ const serverless = require("serverless-http");
 
 const app = express();
 
-const USERS_TABLE = process.env.USERS_TABLE;
-const dynamoDbClient = new AWS.DynamoDB.DocumentClient();
+const TABELA_FUNCIONARIOS = process.env.TABELA_FUNCIONARIOS;
+const IS_OFFLINE = process.env.IS_OFFLINE;
+
+let dynamoDb;
+if (IS_OFFLINE === true) {
+  dynamoDb = new AWS.DynamoDB.DocumentClient({
+    region: "localhost",
+    endpoint: "http://localhost:8000",
+  });
+  console.log(dynamoDb);
+} else {
+  dynamoDb = new AWS.DynamoDB.DocumentClient();
+}
 
 app.use(express.json());
 
-app.get("/users/:userId", async function (req, res) {
-  const params = {
-    TableName: USERS_TABLE,
-    Key: {
-      userId: req.params.userId,
-    },
-  };
-
-  try {
-    const { Item } = await dynamoDbClient.get(params).promise();
-    if (Item) {
-      const { userId, name } = Item;
-      res.json({ userId, name });
-    } else {
-      res
-        .status(404)
-        .json({ error: 'Could not find user with provided "userId"' });
-    }
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: "Could not retreive user" });
-  }
+app.get("/healthCheck", (req, res) => {
+  res.send({ versao: "1.0.0", mensagem: "Estou UP!" });
 });
 
-app.post("/users", async function (req, res) {
-  const { userId, name } = req.body;
-  if (typeof userId !== "string") {
-    res.status(400).json({ error: '"userId" must be a string' });
-  } else if (typeof name !== "string") {
-    res.status(400).json({ error: '"name" must be a string' });
-  }
-
+app.get("/funcionarios", async (req, res) => {
   const params = {
-    TableName: USERS_TABLE,
-    Item: {
-      userId: userId,
-      name: name,
-    },
+    TableName: TABELA_FUNCIONARIOS,
   };
 
   try {
-    await dynamoDbClient.put(params).promise();
-    res.json({ userId, name });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: "Could not create user" });
+    const { Items } = await dynamoDb.scan(params).promise();
+    res.send(Items);
+  } catch (e) {
+    console.log();
+    res.status(500).send({ body: e.message });
   }
 });
 
 app.use((req, res, next) => {
   return res.status(404).json({
-    error: "Not Found",
+    error: "Não encontrado :-(",
   });
 });
-
 
 module.exports.handler = serverless(app);
