@@ -1,28 +1,14 @@
 const AWS = require("aws-sdk");
 const express = require("express");
 const serverless = require("serverless-http");
-const enviroment = require("./common/enviroment");
-
+const enviroment = require("../common/enviroment");
+const dynamoDb = require("../clients/dynamoDbClient");
 const app = express();
-
-const IS_OFFLINE = process.env.IS_OFFLINE;
-
-let dynamoDb;
-
-if (IS_OFFLINE === true || ["test"].includes(process.env.NODE_ENV)) {
-  dynamoDb = new AWS.DynamoDB.DocumentClient({
-    region: enviroment.localDb.region,
-    endpoint: enviroment.localDb.url,
-    sslEnabled: false,
-  });
-} else {
-  dynamoDb = new AWS.DynamoDB.DocumentClient();
-}
 
 app.use(express.json());
 
 app.get("/healthCheck", (req, res) => {
-  res.send({ versao: "1.0.0", mensagem: "Estou UP!", online: !IS_OFFLINE });
+  res.send({ versao: "1.0.0", mensagem: "Estou UP!" });
 });
 
 app.get("/funcionarios", async (req, res) => {

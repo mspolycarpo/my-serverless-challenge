@@ -1,7 +1,5 @@
-const handler = require("../handler");
+const handler = require("../src/handlers/handler");
 const supertest = require("supertest");
-
-//Before all
 
 const request = supertest(handler.app);
 

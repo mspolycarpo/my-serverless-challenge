@@ -40,7 +40,7 @@ provider:
 
 functions:
   api:
-    handler: handler.handler
+    handler: src/handlers/handler.handler
     events:
       - http:
           path: /

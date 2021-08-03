@@ -1,4 +1,4 @@
-const enviroment = require("./common/enviroment");
+const enviroment = require("./src/common/enviroment");
 
 module.exports = {
   tables: [
