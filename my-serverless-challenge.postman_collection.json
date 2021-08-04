@@ -1,0 +1,316 @@
+{
+	"info": {
+		"_postman_id": "5c6598c0-b914-4cad-b1c4-095ee64d93f6",
+		"name": "my-serverless-challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "LocalHost",
+			"item": [
+				{
+					"name": "Criar funcionario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":1,\n    \"nome\":\"Matheus\",\n    \"cargo\":\"Administrador\",\n    \"idade\":30\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/dev/funcionarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"dev",
+								"funcionarios"
+							]
+						},
+						"description": "Lista todos os funcionários presentes na tabela"
+					},
+					"response": []
+				},
+				{
+					"name": "Listar funcionarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/dev/funcionarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"dev",
+								"funcionarios"
+							]
+						},
+						"description": "Lista todos os funcionários presentes na tabela"
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar funcionario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/dev/funcionarios/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"dev",
+								"funcionarios",
+								"10"
+							]
+						},
+						"description": "Lista todos os funcionários presentes na tabela"
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar  funcionario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/dev/funcionarios/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"dev",
+								"funcionarios",
+								"10"
+							]
+						},
+						"description": "Lista todos os funcionários presentes na tabela"
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar funcionario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":1,\n    \"nome\":\"Matheus\",\n    \"cargo\":\"MUDEI\",\n    \"idade\":30\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/dev/funcionarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"dev",
+								"funcionarios"
+							]
+						},
+						"description": "Lista todos os funcionários presentes na tabela"
+					},
+					"response": []
+				},
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AWS",
+			"item": [
+				{
+					"name": "Criar funcionario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":344,\n    \"nome\":\"Matheus\",\n    \"cargo\":\"Administrador\",\n    \"idade\":30\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://bcgz4wdil4.execute-api.us-east-1.amazonaws.com/dev/funcionarios",
+							"protocol": "https",
+							"host": [
+								"bcgz4wdil4",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"funcionarios"
+							]
+						},
+						"description": "Lista todos os funcionários presentes na tabela"
+					},
+					"response": []
+				},
+				{
+					"name": "Listar funcionarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://bcgz4wdil4.execute-api.us-east-1.amazonaws.com/dev/funcionarios",
+							"protocol": "https",
+							"host": [
+								"bcgz4wdil4",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"funcionarios"
+							]
+						},
+						"description": "Lista todos os funcionários presentes na tabela"
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar funcionario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://bcgz4wdil4.execute-api.us-east-1.amazonaws.com/dev/funcionarios/10",
+							"protocol": "https",
+							"host": [
+								"bcgz4wdil4",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"funcionarios",
+								"10"
+							]
+						},
+						"description": "Lista todos os funcionários presentes na tabela"
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar  funcionario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://bcgz4wdil4.execute-api.us-east-1.amazonaws.com/dev/funcionarios/10",
+							"protocol": "https",
+							"host": [
+								"bcgz4wdil4",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"funcionarios",
+								"10"
+							]
+						},
+						"description": "Lista todos os funcionários presentes na tabela"
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar funcionario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":1,\n    \"nome\":\"Matheus\",\n    \"cargo\":\"MUDEI\",\n    \"idade\":30\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://bcgz4wdil4.execute-api.us-east-1.amazonaws.com/dev/funcionarios",
+							"protocol": "https",
+							"host": [
+								"bcgz4wdil4",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"funcionarios"
+							]
+						},
+						"description": "Lista todos os funcionários presentes na tabela"
+					},
+					"response": []
+				},
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://bcgz4wdil4.execute-api.us-east-1.amazonaws.com/dev/healthCheck",
+							"protocol": "https",
+							"host": [
+								"bcgz4wdil4",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"healthCheck"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
