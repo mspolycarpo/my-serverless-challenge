@@ -6,311 +6,169 @@
 	},
 	"item": [
 		{
-			"name": "LocalHost",
-			"item": [
-				{
-					"name": "Criar funcionario",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"id\":1,\n    \"nome\":\"Matheus\",\n    \"cargo\":\"Administrador\",\n    \"idade\":30\n    \n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/dev/funcionarios",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"dev",
-								"funcionarios"
-							]
-						},
-						"description": "Lista todos os funcionários presentes na tabela"
-					},
-					"response": []
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://bcgz4wdil4.execute-api.us-east-1.amazonaws.com/dev/healthCheck",
+					"protocol": "https",
+					"host": [
+						"bcgz4wdil4",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"healthCheck"
+					]
 				},
-				{
-					"name": "Listar funcionarios",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/dev/funcionarios",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"dev",
-								"funcionarios"
-							]
-						},
-						"description": "Lista todos os funcionários presentes na tabela"
-					},
-					"response": []
-				},
-				{
-					"name": "Buscar funcionario",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/dev/funcionarios/10",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"dev",
-								"funcionarios",
-								"10"
-							]
-						},
-						"description": "Lista todos os funcionários presentes na tabela"
-					},
-					"response": []
-				},
-				{
-					"name": "Deletar  funcionario",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/dev/funcionarios/10",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"dev",
-								"funcionarios",
-								"10"
-							]
-						},
-						"description": "Lista todos os funcionários presentes na tabela"
-					},
-					"response": []
-				},
-				{
-					"name": "Atualizar funcionario",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"id\":1,\n    \"nome\":\"Matheus\",\n    \"cargo\":\"MUDEI\",\n    \"idade\":30\n    \n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/dev/funcionarios",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"dev",
-								"funcionarios"
-							]
-						},
-						"description": "Lista todos os funcionários presentes na tabela"
-					},
-					"response": []
-				},
-				{
-					"name": "Health Check",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": null
-					},
-					"response": []
-				}
-			]
+				"description": "Checa se a aplicação está no ar\n\na response atual é :\n{\n    \"versao\": \"1.0.0\",\n    \"mensagem\": \"Estou UP!\"\n}"
+			},
+			"response": []
 		},
 		{
-			"name": "AWS",
-			"item": [
-				{
-					"name": "Criar funcionario",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"id\":344,\n    \"nome\":\"Matheus\",\n    \"cargo\":\"Administrador\",\n    \"idade\":30\n    \n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://bcgz4wdil4.execute-api.us-east-1.amazonaws.com/dev/funcionarios",
-							"protocol": "https",
-							"host": [
-								"bcgz4wdil4",
-								"execute-api",
-								"us-east-1",
-								"amazonaws",
-								"com"
-							],
-							"path": [
-								"dev",
-								"funcionarios"
-							]
-						},
-						"description": "Lista todos os funcionários presentes na tabela"
-					},
-					"response": []
-				},
-				{
-					"name": "Listar funcionarios",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://bcgz4wdil4.execute-api.us-east-1.amazonaws.com/dev/funcionarios",
-							"protocol": "https",
-							"host": [
-								"bcgz4wdil4",
-								"execute-api",
-								"us-east-1",
-								"amazonaws",
-								"com"
-							],
-							"path": [
-								"dev",
-								"funcionarios"
-							]
-						},
-						"description": "Lista todos os funcionários presentes na tabela"
-					},
-					"response": []
-				},
-				{
-					"name": "Buscar funcionario",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://bcgz4wdil4.execute-api.us-east-1.amazonaws.com/dev/funcionarios/10",
-							"protocol": "https",
-							"host": [
-								"bcgz4wdil4",
-								"execute-api",
-								"us-east-1",
-								"amazonaws",
-								"com"
-							],
-							"path": [
-								"dev",
-								"funcionarios",
-								"10"
-							]
-						},
-						"description": "Lista todos os funcionários presentes na tabela"
-					},
-					"response": []
-				},
-				{
-					"name": "Deletar  funcionario",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "https://bcgz4wdil4.execute-api.us-east-1.amazonaws.com/dev/funcionarios/10",
-							"protocol": "https",
-							"host": [
-								"bcgz4wdil4",
-								"execute-api",
-								"us-east-1",
-								"amazonaws",
-								"com"
-							],
-							"path": [
-								"dev",
-								"funcionarios",
-								"10"
-							]
-						},
-						"description": "Lista todos os funcionários presentes na tabela"
-					},
-					"response": []
-				},
-				{
-					"name": "Atualizar funcionario",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"id\":1,\n    \"nome\":\"Matheus\",\n    \"cargo\":\"MUDEI\",\n    \"idade\":30\n    \n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://bcgz4wdil4.execute-api.us-east-1.amazonaws.com/dev/funcionarios",
-							"protocol": "https",
-							"host": [
-								"bcgz4wdil4",
-								"execute-api",
-								"us-east-1",
-								"amazonaws",
-								"com"
-							],
-							"path": [
-								"dev",
-								"funcionarios"
-							]
-						},
-						"description": "Lista todos os funcionários presentes na tabela"
-					},
-					"response": []
-				},
-				{
-					"name": "Health Check",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://bcgz4wdil4.execute-api.us-east-1.amazonaws.com/dev/healthCheck",
-							"protocol": "https",
-							"host": [
-								"bcgz4wdil4",
-								"execute-api",
-								"us-east-1",
-								"amazonaws",
-								"com"
-							],
-							"path": [
-								"dev",
-								"healthCheck"
-							]
+			"name": "Atualizar funcionario",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":1,\n    \"nome\":\"Matheus\",\n    \"cargo\":\"MUDEI\",\n    \"idade\":30\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
 						}
-					},
-					"response": []
-				}
-			]
+					}
+				},
+				"url": {
+					"raw": "https://bcgz4wdil4.execute-api.us-east-1.amazonaws.com/dev/funcionarios/1",
+					"protocol": "https",
+					"host": [
+						"bcgz4wdil4",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"funcionarios",
+						"1"
+					]
+				},
+				"description": "Atualiza o usuário baseado no id \n\npara /funcionario/1\n\ncom o body da request:\n\n{\n    \"id\":1,\n    \"nome\":\"Matheus\",\n    \"cargo\":\"Administrador\",\n    \"idade\":30\n    \n}\n\n\na response atual é\n\n{\n    \"sucesso\": true,\n    \"Item\": {\n        \"id\": 1,\n        \"nome\": \"Matheus\",\n        \"cargo\": \"Administrador\",\n        \"idade\": 30\n    }\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar  funcionario",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://bcgz4wdil4.execute-api.us-east-1.amazonaws.com/dev/funcionarios/10",
+					"protocol": "https",
+					"host": [
+						"bcgz4wdil4",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"funcionarios",
+						"10"
+					]
+				},
+				"description": "Lista todos os funcionários presentes na tabela"
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar funcionario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://bcgz4wdil4.execute-api.us-east-1.amazonaws.com/dev/funcionarios/10",
+					"protocol": "https",
+					"host": [
+						"bcgz4wdil4",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"funcionarios",
+						"10"
+					]
+				},
+				"description": "Busca um funcionario baseado no id\n\n/funcionario/id\n\npara /funcionario/1 a response atual é:\n\n{\n    \"sucesso\": true,\n    \"item\": {\n        \"Item\": {\n            \"nome\": \"Matheus\",\n            \"id\": 1,\n            \"idade\": 30,\n            \"cargo\": \"MUDEI\"\n        }\n    }\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar funcionarios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://bcgz4wdil4.execute-api.us-east-1.amazonaws.com/dev/funcionarios",
+					"protocol": "https",
+					"host": [
+						"bcgz4wdil4",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"funcionarios"
+					]
+				},
+				"description": "Lista todos os funcionários presentes na tabela\n\n\nExemplo de uma response :\n\n\n{\n    \"sucesso\": true,\n    \"Items\": [\n        {\n            \"nome\": \"Matheus\",\n            \"id\": 344,\n            \"idade\": 30,\n            \"cargo\": \"Administrador\"\n        },\n        {\n            \"nome\": \"Matheus\",\n            \"id\": 1,\n            \"idade\": 30,\n            \"cargo\": \"MUDEI\"\n        }\n    ]\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Criar funcionario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":344,\n    \"nome\":\"Matheus\",\n    \"cargo\":\"Administrador\",\n    \"idade\":30\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://bcgz4wdil4.execute-api.us-east-1.amazonaws.com/dev/funcionarios",
+					"protocol": "https",
+					"host": [
+						"bcgz4wdil4",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"funcionarios"
+					]
+				},
+				"description": "Cria um novo funcionario na base\n\nAbaixo segue um exemplo do body da REQUEST\nbody : \n\n{\n    \"id\":3454,\n    \"nome\":\"Matheus\",\n    \"cargo\":\"Administrador\",\n    \"idade\":30\n    \n}\n\nEm seguida a RESPONSE bem sucedida:\n\n{\n    \"sucesso\": true,\n    \"Item\": {\n        \"id\": 3454,\n        \"nome\": \"Matheus\",\n        \"cargo\": \"Administrador\",\n        \"idade\": 30\n    }\n}"
+			},
+			"response": []
 		}
 	]
 }

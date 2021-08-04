@@ -18,8 +18,8 @@ app.get("/funcionarios", async (req, res) => {
   };
 
   try {
-    const { items } = await dynamoDb.scan(params).promise();
-    res.send({ sucesso: true, items });
+    const { Items } = await dynamoDb.scan(params).promise();
+    res.send({ sucesso: true, Items });
   } catch (e) {
     res.status(500).send({ sucesso: false, mensagem: e.message });
   }
