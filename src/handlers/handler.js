@@ -3,7 +3,7 @@ const express = require("express");
 const serverless = require("serverless-http");
 const enviroment = require("../common/enviroment");
 const dynamoDb = require("../clients/dynamoDbClient");
-const { validaChaves } = require("../common/validators");
+const { validaChaves, validaId } = require("../common/validators");
 const app = express();
 
 app.use(express.json());
@@ -18,10 +18,10 @@ app.get("/funcionarios", async (req, res) => {
   };
 
   try {
-    const { Items } = await dynamoDb.scan(params).promise();
-    res.send(Items);
+    const { items } = await dynamoDb.scan(params).promise();
+    res.send({ sucesso: true, items });
   } catch (e) {
-    res.status(500).send({ body: e.message });
+    res.status(500).send({ sucesso: false, mensagem: e.message });
   }
 });
 
@@ -57,6 +57,24 @@ app.post("/funcionarios", async (req, res) => {
         .status(e.statusCode || 500)
         .send({ sucesso: false, mensagem: e.message });
     }
+  }
+});
+
+app.get("/funcionarios/:id", async (req, res) => {
+  try {
+    validaId(Number.parseInt(req.params.id));
+    const id = Number.parseInt(req.params.id);
+
+    const params = {
+      TableName: enviroment.TABELA_FUNCIONARIOS,
+      Key: { id },
+    };
+
+    const item = await dynamoDb.get(params).promise();
+    const statusCode = Object.values(item).length > 0 ? 200 : 204;
+    res.status(statusCode).send({ sucesso: true, item });
+  } catch (e) {
+    res.status(e.statusCode || 500).send({ body: e.message || e });
   }
 });
 

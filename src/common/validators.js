@@ -21,4 +21,12 @@ const validaChaves = (Item) => {
   }
 };
 
-module.exports = { validaChaves };
+const validaId = (id) => {
+  if (id && !Number.isInteger(id)) {
+    e = new Error("id precisa ser inteiro");
+    e.statusCode = 400;
+    throw e;
+  }
+};
+
+module.exports = { validaChaves, validaId };

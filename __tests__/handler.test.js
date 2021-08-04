@@ -22,6 +22,8 @@ test("Listar funcionarios - Status 200", async () => {
   }
 });
 
+//#region Criação de funcionário
+
 test("Criar funcionario - Caminho feliz :-)", async () => {
   try {
     const res = await request.post("/funcionarios").send({
@@ -113,3 +115,59 @@ test("(FALHA) Criar funcionario - ID precisa ser inteiro", async () => {
     throw Error(e);
   }
 });
+
+//#endregion
+
+//#region Busca funcionario por ID
+test("Busca funcionario por ID", async () => {
+  try {
+    const id = Math.floor(1000 * Math.random());
+    await request.post("/funcionarios").send({
+      nome: "Matheus",
+      id,
+      cargo: "Administrador",
+      idade: 26,
+    });
+
+    const res = await request.get(`/funcionarios/${id}`);
+    expect(res.status).toBe(200);
+  } catch (e) {
+    throw Error(e);
+  }
+});
+
+test("Busca funcionario por ID - Não encontra item", async () => {
+  try {
+    const id = 2;
+    await request.post("/funcionarios").send({
+      nome: "Matheus",
+      id,
+      cargo: "Administrador",
+      idade: 26,
+    });
+
+    const res = await request.get("/funcionarios/8");
+    expect(res.status).toBe(204);
+  } catch (e) {
+    throw Error(e);
+  }
+});
+
+test("(FALHA) Busca funcionario por ID - ID não inteiro ", async () => {
+  try {
+    const id = 2;
+    await request.post("/funcionarios").send({
+      nome: "Matheus",
+      id,
+      cargo: "Administrador",
+      idade: 26,
+    });
+
+    const res = await request.get("/funcionarios/A");
+    expect(res.status).toBe(400);
+  } catch (e) {
+    throw Error(e);
+  }
+});
+
+//#endregion
