@@ -112,6 +112,31 @@ app.put("/funcionarios/:id", async (req, res) => {
   }
 });
 
+app.delete("/funcionarios/:id", async (req, res) => {
+  try {
+    validaId(Number.parseInt(req.params.id));
+    const id = Number.parseInt(req.params.id);
+
+    const params = {
+      TableName: enviroment.TABELA_FUNCIONARIOS,
+      Key: { id },
+      ConditionExpression: "attribute_exists(id)",
+    };
+
+    await dynamoDb.delete(params).promise();
+
+    res.send({ sucesso: true });
+  } catch (e) {
+    if (e.code && e.code === "ConditionalCheckFailedException") {
+      res
+        .status(e.statusCode)
+        .send({ sucesso: false, mensagem: " id não existe" });
+    } else {
+      res.status(e.statusCode || 500).send({ body: e.message || e });
+    }
+  }
+});
+
 app.use((req, res, next) => {
   return res.status(404).json({
     erro: "Não encontrado :-(",

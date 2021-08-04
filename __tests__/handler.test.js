@@ -38,7 +38,7 @@ test("Criar funcionario - Caminho feliz :-)", async () => {
   }
 });
 
-test("(FALHA) Criar funcionario - ID ja existente", async () => {
+test("Criar funcionario - ID ja existente", async () => {
   try {
     const id = Math.floor(1000 * Math.random());
     const res = await request.post("/funcionarios").send({
@@ -63,7 +63,7 @@ test("(FALHA) Criar funcionario - ID ja existente", async () => {
   }
 });
 
-test("(FALHA) Criar funcionario - Sem chave id,nome,cargo ou idade ", async () => {
+test("Criar funcionario - Sem chave id,nome,cargo ou idade ", async () => {
   try {
     const id = Math.floor(1000 * Math.random());
     const semId = {
@@ -100,7 +100,7 @@ test("(FALHA) Criar funcionario - Sem chave id,nome,cargo ou idade ", async () =
   }
 });
 
-test("(FALHA) Criar funcionario - ID precisa ser inteiro", async () => {
+test("Criar funcionario - ID precisa ser inteiro", async () => {
   try {
     const res = await request.post("/funcionarios").send({
       nome: "Matheus",
@@ -153,7 +153,7 @@ test("Busca funcionario por ID - Não encontra item", async () => {
   }
 });
 
-test("(FALHA) Busca funcionario por ID - ID não inteiro ", async () => {
+test("Busca funcionario por ID - ID não inteiro ", async () => {
   try {
     const id = 2;
     await request.post("/funcionarios").send({
@@ -173,7 +173,7 @@ test("(FALHA) Busca funcionario por ID - ID não inteiro ", async () => {
 //#endregion
 
 //#region Atualização de funcionario
-test(" Atualizar funcionario - Caminho feliz :-)", async () => {
+test("Atualizar funcionario - Caminho feliz :-)", async () => {
   try {
     const id = Math.floor(1000 * Math.random());
     const res = await request.post("/funcionarios").send({
@@ -196,7 +196,7 @@ test(" Atualizar funcionario - Caminho feliz :-)", async () => {
   }
 });
 
-test("(FALHA) Atualizar funcionario - id não existe", async () => {
+test("Atualizar funcionario - id não existe", async () => {
   try {
     const res = await request.put(`/funcionarios/1`).send({
       nome: "Matheus",
@@ -209,13 +209,53 @@ test("(FALHA) Atualizar funcionario - id não existe", async () => {
   }
 });
 
-test("(FALHA) Atualizar funcionario - id não inteiro", async () => {
+test("Atualizar funcionario - id não inteiro", async () => {
   try {
     const res = await request.put(`/funcionarios/A`).send({
       nome: "Matheus",
       cargo: "Administrador",
       idade: 26,
     });
+    expect(res.status).toBe(400);
+  } catch (e) {
+    throw Error(e);
+  }
+});
+
+//#endregion
+
+//#region Deletar funcionario
+test("Deletar funcionario - Caminho feliz :-)", async () => {
+  try {
+    const id = Math.floor(1000 * Math.random());
+    const res = await request.post("/funcionarios").send({
+      nome: "Matheus",
+      id,
+      cargo: "Administrador",
+      idade: 26,
+    });
+
+    expect(res.status).toBe(201);
+
+    const res1 = await request.delete(`/funcionarios/${id}`);
+    expect(res1.status).toBe(200);
+  } catch (e) {
+    throw Error(e);
+  }
+});
+
+test("Deletar funcionario - Id não existe", async () => {
+  try {
+    const res1 = await request.delete(`/funcionarios/1`);
+    expect(res1.status).toBe(400);
+  } catch (e) {
+    throw Error(e);
+  }
+});
+
+test("Deletar funcionario  - id não inteiro", async () => {
+  try {
+    const res = await request.delete(`/funcionarios/A`);
     expect(res.status).toBe(400);
   } catch (e) {
     throw Error(e);
