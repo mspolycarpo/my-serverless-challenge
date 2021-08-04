@@ -45,11 +45,17 @@ Para realizar testes locais será necessário algumas etapas
 ### Etapas
 
 npm i #para instalar as dependencias
+
 npm i serverless -g #para instalar o serverless globalmente na maquina local
+
 
 #Se windows recomendo utilizar git bash em vez de PowerShell
 
+
 serverless login #é necessário estar logado no serverless
+
 serverless config credentials --provider aws --key 1234 --secret 5678 #configurar credenciais AWS
+
 sls dynamodb install #instalar dynamodb localmente
+
 sls offline start #rodar app localmente
