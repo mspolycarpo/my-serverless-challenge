@@ -78,6 +78,40 @@ app.get("/funcionarios/:id", async (req, res) => {
   }
 });
 
+app.put("/funcionarios/:id", async (req, res) => {
+  try {
+    validaId(Number.parseInt(req.params.id));
+    const id = Number.parseInt(req.params.id);
+
+    const Item = {
+      id,
+      nome: req.body.nome,
+      cargo: req.body.cargo,
+      idade: req.body.idade,
+    };
+
+    validaChaves(Item);
+
+    const params = {
+      TableName: enviroment.TABELA_FUNCIONARIOS,
+      Item,
+      ConditionExpression: "attribute_exists(id)",
+    };
+
+    await dynamoDb.put(params).promise();
+
+    res.send({ sucesso: true, Item });
+  } catch (e) {
+    if (e.code && e.code === "ConditionalCheckFailedException") {
+      res
+        .status(e.statusCode)
+        .send({ sucesso: false, mensagem: " id não existe" });
+    } else {
+      res.status(e.statusCode || 500).send({ body: e.message || e });
+    }
+  }
+});
+
 app.use((req, res, next) => {
   return res.status(404).json({
     erro: "Não encontrado :-(",
