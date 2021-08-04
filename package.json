@@ -3,7 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": {
+    "aws-sdk": "^2.959.0",
     "express": "^4.17.1",
     "serverless-http": "^2.7.0"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@shelf/jest-dynamodb": "^1.8.1",
+    "jest": "^27.0.6",
+    "serverless-dynamodb-local": "^0.2.40",
+    "serverless-offline": "^8.0.0",
+    "supertest": "^6.1.4"
   }
 }

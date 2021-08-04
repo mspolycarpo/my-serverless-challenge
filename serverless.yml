@@ -4,8 +4,18 @@ service: my-serverless-challenge
 
 frameworkVersion: '2'
 
+
+plugins:
+    - serverless-dynamodb-local
+    - serverless-offline
+
 custom:
-  tableName: 'users-table-${self:provider.stage}'
+  tableName: 'funcionarios-table-${self:provider.stage}'
+  dynamodb:
+    stages: 
+      - dev
+    start:
+      migrate: true
 
 provider:
   name: aws
@@ -24,13 +34,13 @@ provider:
             - dynamodb:UpdateItem
             - dynamodb:DeleteItem
           Resource:
-            - Fn::GetAtt: [ UsersTable, Arn ]
+            - Fn::GetAtt: [ TabelaFuncionarios, Arn ]
   environment:
-    USERS_TABLE: ${self:custom.tableName}
+    TABELA_FUNCIONARIOS: ${self:custom.tableName}
 
 functions:
   api:
-    handler: handler.handler
+    handler: src/handlers/handler.handler
     events:
       - http:
           path: /
@@ -41,14 +51,14 @@ functions:
 
 resources:
   Resources:
-    UsersTable:
+    TabelaFuncionarios:
       Type: AWS::DynamoDB::Table
       Properties:
         AttributeDefinitions:
-          - AttributeName: userId
-            AttributeType: S
+          - AttributeName: id
+            AttributeType: N
         KeySchema:
-          - AttributeName: userId
+          - AttributeName: id
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
